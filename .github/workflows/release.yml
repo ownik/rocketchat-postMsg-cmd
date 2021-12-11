@@ -7,7 +7,12 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      PIPENV_VENV_IN_PROJECT: 1
 
     steps:
       - uses: actions/checkout@v2
