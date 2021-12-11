@@ -44,8 +44,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: dist-artifacts
-      - name: Create release
-        run: ls .
       - name: Get the version
         id: get_version
         run: |
@@ -54,14 +52,14 @@ jobs:
       - name: Adding version to binaries
         run: |
           mv rocketchat_postmessage_cli_windows-latest.exe rocketchat_postmessage_cli_win_${{ steps.get_version.outputs.VERSION }}.exe
-          mv rocketchat_postmessage_cli_ubuntu-latest rocketchat_postmessage_cli-ubuntu_${{ steps.get_version.outputs.VERSION }}
+          mv rocketchat_postmessage_cli_ubuntu-latest rocketchat_postmessage_cli_ubuntu_${{ steps.get_version.outputs.VERSION }}
           mv rocketchat_postmessage_cli_macos-latest rocketchat_postmessage_cli_macos_${{ steps.get_version.outputs.VERSION }}
       - name: Publish Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             rocketchat_postmessage_cli_win_${{ steps.get_version.outputs.VERSION }}.exe
-            rocketchat_postmessage_cli-ubuntu_${{ steps.get_version.outputs.VERSION }}
+            rocketchat_postmessage_cli_ubuntu_${{ steps.get_version.outputs.VERSION }}
             rocketchat_postmessage_cli_macos_${{ steps.get_version.outputs.VERSION }}
           draft: true
 
