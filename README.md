@@ -1,4 +1,7 @@
 # rocketchat-postMsg-cmd
+
+[![tests](https://github.com/ownik/rocketchat_postmessage_cli/actions/workflows/tests.yml/badge.svg)](https://github.com/ownik/rocketchat_postmessage_cli/actions/workflows/tests.yml)
+
 Simple command line utility for sending messages to Rocket.Chat.
 
 ### Usage
