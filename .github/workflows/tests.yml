@@ -8,9 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PIPENV_VENV_IN_PROJECT: 1
-
     steps:
       - uses: actions/checkout@v2
       - name: Install pipenv

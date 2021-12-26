@@ -11,9 +11,6 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
-    env:
-      PIPENV_VENV_IN_PROJECT: 1
-
     steps:
       - uses: actions/checkout@v2
       - name: Install pipenv
