@@ -21,6 +21,6 @@ jobs:
           architecture: 'x64' 
           cache: 'pipenv'
       - name: Install dependencies
-        run: pipenv install
+        run: pipenv install --dev
       - name: Testing
         run: pipenv run pytest
