@@ -22,6 +22,7 @@ jobs:
         with:
           python-version: '3.9' 
           architecture: 'x64' 
+          cache: 'pipenv'
       - name: Install dependencies
         run: pipenv install
       - name: Building exe
