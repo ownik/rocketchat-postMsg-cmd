@@ -46,15 +46,20 @@ jobs:
           echo ::set-output name=VERSION::${TAG_NAME//./_}
       - name: Adding version to binaries
         run: |
-          mv rocketchat_postmessage_cli_windows-latest.exe rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_win.exe
-          mv rocketchat_postmessage_cli_ubuntu-latest rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_ubuntu
-          mv rocketchat_postmessage_cli_macos-latest rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_macos
+          mv rocketchat_postmessage_cli_windows-latest.exe rocketchat_postmessage_cli_win.exe
+          mv rocketchat_postmessage_cli_ubuntu-latest rocketchat_postmessage_cli_ubuntu
+          mv rocketchat_postmessage_cli_macos-latest rocketchat_postmessage_cli_macos
+      - name: Archiving binaries
+        run: |
+          zip rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_win_x64.zip rocketchat_postmessage_cli_win.exe
+          tar -cvzf rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_ubuntu_x64.tar.gz rocketchat_postmessage_cli_ubuntu
+          zip rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_macos_x64.zip rocketchat_postmessage_cli_macos
       - name: Publish Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_win.exe
-            rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_ubuntu
-            rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_macos
+            rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_win_x64.zip
+            rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_ubuntu_x64.tar.gz
+            rocketchat_postmessage_cli_${{ steps.get_version.outputs.VERSION }}_macos_x64.zip
           draft: true
 
