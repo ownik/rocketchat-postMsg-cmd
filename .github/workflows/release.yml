@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: pipenv install
       - name: Building exe
-        run: pipenv run pyinstaller --onefile main.py --name rocketchat_postmessage_cli_${{matrix.os}}
+        run: pipenv run pyinstaller --onefile src/main.py --name rocketchat_postmessage_cli_${{matrix.os}}
       - uses: actions/upload-artifact@v2
         with:
           name: dist-artifacts

@@ -1,6 +1,7 @@
 import sys
 import argparse
 from rocketchat_API.rocketchat import RocketChat
+import utils
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -12,6 +13,8 @@ if __name__ == '__main__':
     parser.add_argument('--alias', help='Rocket.Chat user alias')
 
     args = parser.parse_args()
+
+    args.message = utils.parse_escaped_str(args.message)
 
     rocket = RocketChat(args.user, args.password, server_url=args.url)
 

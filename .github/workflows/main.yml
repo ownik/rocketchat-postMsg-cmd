@@ -1,0 +1,26 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PIPENV_VENV_IN_PROJECT: 1
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install pipenv
+        run: pipx install pipenv
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9' 
+          architecture: 'x64' 
+          cache: 'pipenv'
+      - name: Install dependencies
+        run: pipenv install
+      - name: Testing
+        run: pipenv run pytest
